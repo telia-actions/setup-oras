@@ -3155,7 +3155,11 @@ function copyFile(srcFile, destFile, force) {
 
 var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
     if (k2 === undefined) k2 = k;
-    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
+    var desc = Object.getOwnPropertyDescriptor(m, k);
+    if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
+      desc = { enumerable: true, get: function() { return m[k]; } };
+    }
+    Object.defineProperty(o, k2, desc);
 }) : (function(o, m, k, k2) {
     if (k2 === undefined) k2 = k;
     o[k2] = m[k];
@@ -3168,7 +3172,7 @@ var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (
 var __importStar = (this && this.__importStar) || function (mod) {
     if (mod && mod.__esModule) return mod;
     var result = {};
-    if (mod != null) for (var k in mod) if (k !== "default" && Object.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
     __setModuleDefault(result, mod);
     return result;
 };
@@ -3198,11 +3202,11 @@ function _findMatch(versionSpec, stable, candidates, archFilter) {
         let file;
         for (const candidate of candidates) {
             const version = candidate.version;
-            core_1.debug(`check ${version} satisfies ${versionSpec}`);
+            (0, core_1.debug)(`check ${version} satisfies ${versionSpec}`);
             if (semver.satisfies(version, versionSpec) &&
                 (!stable || candidate.stable === stable)) {
                 file = candidate.files.find(item => {
-                    core_1.debug(`${item.arch}===${archFilter} && ${item.platform}===${platFilter}`);
+                    (0, core_1.debug)(`${item.arch}===${archFilter} && ${item.platform}===${platFilter}`);
                     let chk = item.arch === archFilter && item.platform === platFilter;
                     if (chk && item.platform_version) {
                         const osVersion = module.exports._getOsVersion();
@@ -3216,7 +3220,7 @@ function _findMatch(versionSpec, stable, candidates, archFilter) {
                     return chk;
                 });
                 if (file) {
-                    core_1.debug(`matched ${candidate.version}`);
+                    (0, core_1.debug)(`matched ${candidate.version}`);
                     match = candidate;
                     break;
                 }
@@ -3254,10 +3258,7 @@ function _getOsVersion() {
                 if (parts.length === 2 &&
                     (parts[0].trim() === 'VERSION_ID' ||
                         parts[0].trim() === 'DISTRIB_RELEASE')) {
-                    version = parts[1]
-                        .trim()
-                        .replace(/^"/, '')
-                        .replace(/"$/, '');
+                    version = parts[1].trim().replace(/^"/, '').replace(/"$/, '');
                     break;
                 }
             }
@@ -3290,7 +3291,11 @@ exports._readLinuxVersionFile = _readLinuxVersionFile;
 
 var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
     if (k2 === undefined) k2 = k;
-    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
+    var desc = Object.getOwnPropertyDescriptor(m, k);
+    if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
+      desc = { enumerable: true, get: function() { return m[k]; } };
+    }
+    Object.defineProperty(o, k2, desc);
 }) : (function(o, m, k, k2) {
     if (k2 === undefined) k2 = k;
     o[k2] = m[k];
@@ -3303,7 +3308,7 @@ var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (
 var __importStar = (this && this.__importStar) || function (mod) {
     if (mod && mod.__esModule) return mod;
     var result = {};
-    if (mod != null) for (var k in mod) if (k !== "default" && Object.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
     __setModuleDefault(result, mod);
     return result;
 };
@@ -3380,7 +3385,11 @@ exports.RetryHelper = RetryHelper;
 
 var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
     if (k2 === undefined) k2 = k;
-    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
+    var desc = Object.getOwnPropertyDescriptor(m, k);
+    if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
+      desc = { enumerable: true, get: function() { return m[k]; } };
+    }
+    Object.defineProperty(o, k2, desc);
 }) : (function(o, m, k, k2) {
     if (k2 === undefined) k2 = k;
     o[k2] = m[k];
@@ -3393,7 +3402,7 @@ var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (
 var __importStar = (this && this.__importStar) || function (mod) {
     if (mod && mod.__esModule) return mod;
     var result = {};
-    if (mod != null) for (var k in mod) if (k !== "default" && Object.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
     __setModuleDefault(result, mod);
     return result;
 };
@@ -3406,13 +3415,11 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.evaluateVersions = exports.isExplicitVersion = exports.findFromManifest = exports.getManifestFromRepo = exports.findAllVersions = exports.find = exports.cacheFile = exports.cacheDir = exports.extractZip = exports.extractXar = exports.extractTar = exports.extract7z = exports.downloadTool = exports.HTTPError = void 0;
 const core = __importStar(__nccwpck_require__(484));
 const io = __importStar(__nccwpck_require__(994));
+const crypto = __importStar(__nccwpck_require__(982));
 const fs = __importStar(__nccwpck_require__(896));
 const mm = __importStar(__nccwpck_require__(36));
 const os = __importStar(__nccwpck_require__(857));
@@ -3422,7 +3429,6 @@ const semver = __importStar(__nccwpck_require__(318));
 const stream = __importStar(__nccwpck_require__(203));
 const util = __importStar(__nccwpck_require__(23));
 const assert_1 = __nccwpck_require__(613);
-const v4_1 = __importDefault(__nccwpck_require__(350));
 const exec_1 = __nccwpck_require__(236);
 const retry_helper_1 = __nccwpck_require__(380);
 class HTTPError extends Error {
@@ -3447,7 +3453,7 @@ const userAgent = 'actions/tool-cache';
  */
 function downloadTool(url, dest, auth, headers) {
     return __awaiter(this, void 0, void 0, function* () {
-        dest = dest || path.join(_getTempDirectory(), v4_1.default());
+        dest = dest || path.join(_getTempDirectory(), crypto.randomUUID());
         yield io.mkdirP(path.dirname(dest));
         core.debug(`Downloading ${url}`);
         core.debug(`Destination ${dest}`);
@@ -3536,8 +3542,8 @@ function downloadToolAttempt(url, dest, auth, headers) {
  */
 function extract7z(file, dest, _7zPath) {
     return __awaiter(this, void 0, void 0, function* () {
-        assert_1.ok(IS_WINDOWS, 'extract7z() not supported on current OS');
-        assert_1.ok(file, 'parameter "file" is required');
+        (0, assert_1.ok)(IS_WINDOWS, 'extract7z() not supported on current OS');
+        (0, assert_1.ok)(file, 'parameter "file" is required');
         dest = yield _createExtractFolder(dest);
         const originalCwd = process.cwd();
         process.chdir(dest);
@@ -3554,7 +3560,7 @@ function extract7z(file, dest, _7zPath) {
                 const options = {
                     silent: true
                 };
-                yield exec_1.exec(`"${_7zPath}"`, args, options);
+                yield (0, exec_1.exec)(`"${_7zPath}"`, args, options);
             }
             finally {
                 process.chdir(originalCwd);
@@ -3583,7 +3589,7 @@ function extract7z(file, dest, _7zPath) {
             };
             try {
                 const powershellPath = yield io.which('powershell', true);
-                yield exec_1.exec(`"${powershellPath}"`, args, options);
+                yield (0, exec_1.exec)(`"${powershellPath}"`, args, options);
             }
             finally {
                 process.chdir(originalCwd);
@@ -3611,7 +3617,7 @@ function extractTar(file, dest, flags = 'xz') {
         // Determine whether GNU tar
         core.debug('Checking tar --version');
         let versionOutput = '';
-        yield exec_1.exec('tar --version', [], {
+        yield (0, exec_1.exec)('tar --version', [], {
             ignoreReturnCode: true,
             silent: true,
             listeners: {
@@ -3647,7 +3653,7 @@ function extractTar(file, dest, flags = 'xz') {
             args.push('--overwrite');
         }
         args.push('-C', destArg, '-f', fileArg);
-        yield exec_1.exec(`tar`, args);
+        yield (0, exec_1.exec)(`tar`, args);
         return dest;
     });
 }
@@ -3662,8 +3668,8 @@ exports.extractTar = extractTar;
  */
 function extractXar(file, dest, flags = []) {
     return __awaiter(this, void 0, void 0, function* () {
-        assert_1.ok(IS_MAC, 'extractXar() not supported on current OS');
-        assert_1.ok(file, 'parameter "file" is required');
+        (0, assert_1.ok)(IS_MAC, 'extractXar() not supported on current OS');
+        (0, assert_1.ok)(file, 'parameter "file" is required');
         dest = yield _createExtractFolder(dest);
         let args;
         if (flags instanceof Array) {
@@ -3677,7 +3683,7 @@ function extractXar(file, dest, flags = []) {
             args.push('-v');
         }
         const xarPath = yield io.which('xar', true);
-        yield exec_1.exec(`"${xarPath}"`, _unique(args));
+        yield (0, exec_1.exec)(`"${xarPath}"`, _unique(args));
         return dest;
     });
 }
@@ -3731,7 +3737,7 @@ function extractZipWin(file, dest) {
                 pwshCommand
             ];
             core.debug(`Using pwsh at path: ${pwshPath}`);
-            yield exec_1.exec(`"${pwshPath}"`, args);
+            yield (0, exec_1.exec)(`"${pwshPath}"`, args);
         }
         else {
             const powershellCommand = [
@@ -3752,7 +3758,7 @@ function extractZipWin(file, dest) {
             ];
             const powershellPath = yield io.which('powershell', true);
             core.debug(`Using powershell at path: ${powershellPath}`);
-            yield exec_1.exec(`"${powershellPath}"`, args);
+            yield (0, exec_1.exec)(`"${powershellPath}"`, args);
         }
     });
 }
@@ -3764,7 +3770,7 @@ function extractZipNix(file, dest) {
             args.unshift('-q');
         }
         args.unshift('-o'); //overwrite with -o, otherwise a prompt is shown which freezes the run
-        yield exec_1.exec(`"${unzipPath}"`, args, { cwd: dest });
+        yield (0, exec_1.exec)(`"${unzipPath}"`, args, { cwd: dest });
     });
 }
 /**
@@ -3941,7 +3947,7 @@ function _createExtractFolder(dest) {
     return __awaiter(this, void 0, void 0, function* () {
         if (!dest) {
             // create a temp dir
-            dest = path.join(_getTempDirectory(), v4_1.default());
+            dest = path.join(_getTempDirectory(), crypto.randomUUID());
         }
         yield io.mkdirP(dest);
         return dest;
@@ -4014,7 +4020,7 @@ exports.evaluateVersions = evaluateVersions;
  */
 function _getCacheDirectory() {
     const cacheDirectory = process.env['RUNNER_TOOL_CACHE'] || '';
-    assert_1.ok(cacheDirectory, 'Expected RUNNER_TOOL_CACHE to be defined');
+    (0, assert_1.ok)(cacheDirectory, 'Expected RUNNER_TOOL_CACHE to be defined');
     return cacheDirectory;
 }
 /**
@@ -4022,7 +4028,7 @@ function _getCacheDirectory() {
  */
 function _getTempDirectory() {
     const tempDirectory = process.env['RUNNER_TEMP'] || '';
-    assert_1.ok(tempDirectory, 'Expected RUNNER_TEMP to be defined');
+    (0, assert_1.ok)(tempDirectory, 'Expected RUNNER_TEMP to be defined');
     return tempDirectory;
 }
 /**
@@ -4042,90 +4048,6 @@ function _unique(values) {
     return Array.from(new Set(values));
 }
 //# sourceMappingURL=tool-cache.js.map
-
-/***/ }),
-
-/***/ 727:
-/***/ ((module) => {
-
-/**
- * Convert array of 16 byte values to UUID string format of the form:
- * XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX
- */
-var byteToHex = [];
-for (var i = 0; i < 256; ++i) {
-  byteToHex[i] = (i + 0x100).toString(16).substr(1);
-}
-
-function bytesToUuid(buf, offset) {
-  var i = offset || 0;
-  var bth = byteToHex;
-  // join used to fix memory issue caused by concatenation: https://bugs.chromium.org/p/v8/issues/detail?id=3175#c4
-  return ([
-    bth[buf[i++]], bth[buf[i++]],
-    bth[buf[i++]], bth[buf[i++]], '-',
-    bth[buf[i++]], bth[buf[i++]], '-',
-    bth[buf[i++]], bth[buf[i++]], '-',
-    bth[buf[i++]], bth[buf[i++]], '-',
-    bth[buf[i++]], bth[buf[i++]],
-    bth[buf[i++]], bth[buf[i++]],
-    bth[buf[i++]], bth[buf[i++]]
-  ]).join('');
-}
-
-module.exports = bytesToUuid;
-
-
-/***/ }),
-
-/***/ 879:
-/***/ ((module, __unused_webpack_exports, __nccwpck_require__) => {
-
-// Unique ID creation requires a high quality random # generator.  In node.js
-// this is pretty straight-forward - we use the crypto API.
-
-var crypto = __nccwpck_require__(982);
-
-module.exports = function nodeRNG() {
-  return crypto.randomBytes(16);
-};
-
-
-/***/ }),
-
-/***/ 350:
-/***/ ((module, __unused_webpack_exports, __nccwpck_require__) => {
-
-var rng = __nccwpck_require__(879);
-var bytesToUuid = __nccwpck_require__(727);
-
-function v4(options, buf, offset) {
-  var i = buf && offset || 0;
-
-  if (typeof(options) == 'string') {
-    buf = options === 'binary' ? new Array(16) : null;
-    options = null;
-  }
-  options = options || {};
-
-  var rnds = options.random || (options.rng || rng)();
-
-  // Per 4.4, set bits for version and `clock_seq_hi_and_reserved`
-  rnds[6] = (rnds[6] & 0x0f) | 0x40;
-  rnds[8] = (rnds[8] & 0x3f) | 0x80;
-
-  // Copy bytes to buffer, if provided
-  if (buf) {
-    for (var ii = 0; ii < 16; ++ii) {
-      buf[i + ii] = rnds[ii];
-    }
-  }
-
-  return buf || bytesToUuid(rnds);
-}
-
-module.exports = v4;
-
 
 /***/ }),
 
@@ -6092,13 +6014,23 @@ var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (
 }) : function(o, v) {
     o["default"] = v;
 });
-var __importStar = (this && this.__importStar) || function (mod) {
-    if (mod && mod.__esModule) return mod;
-    var result = {};
-    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
-    __setModuleDefault(result, mod);
-    return result;
-};
+var __importStar = (this && this.__importStar) || (function () {
+    var ownKeys = function(o) {
+        ownKeys = Object.getOwnPropertyNames || function (o) {
+            var ar = [];
+            for (var k in o) if (Object.prototype.hasOwnProperty.call(o, k)) ar[ar.length] = k;
+            return ar;
+        };
+        return ownKeys(o);
+    };
+    return function (mod) {
+        if (mod && mod.__esModule) return mod;
+        var result = {};
+        if (mod != null) for (var k = ownKeys(mod), i = 0; i < k.length; i++) if (k[i] !== "default") __createBinding(result, mod, k[i]);
+        __setModuleDefault(result, mod);
+        return result;
+    };
+})();
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.hash = hash;
 const crypto = __importStar(__nccwpck_require__(982));
@@ -6150,13 +6082,23 @@ var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (
 }) : function(o, v) {
     o["default"] = v;
 });
-var __importStar = (this && this.__importStar) || function (mod) {
-    if (mod && mod.__esModule) return mod;
-    var result = {};
-    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
-    __setModuleDefault(result, mod);
-    return result;
-};
+var __importStar = (this && this.__importStar) || (function () {
+    var ownKeys = function(o) {
+        ownKeys = Object.getOwnPropertyNames || function (o) {
+            var ar = [];
+            for (var k in o) if (Object.prototype.hasOwnProperty.call(o, k)) ar[ar.length] = k;
+            return ar;
+        };
+        return ownKeys(o);
+    };
+    return function (mod) {
+        if (mod && mod.__esModule) return mod;
+        var result = {};
+        if (mod != null) for (var k = ownKeys(mod), i = 0; i < k.length; i++) if (k[i] !== "default") __createBinding(result, mod, k[i]);
+        __setModuleDefault(result, mod);
+        return result;
+    };
+})();
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
@@ -6276,13 +6218,23 @@ var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (
 }) : function(o, v) {
     o["default"] = v;
 });
-var __importStar = (this && this.__importStar) || function (mod) {
-    if (mod && mod.__esModule) return mod;
-    var result = {};
-    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
-    __setModuleDefault(result, mod);
-    return result;
-};
+var __importStar = (this && this.__importStar) || (function () {
+    var ownKeys = function(o) {
+        ownKeys = Object.getOwnPropertyNames || function (o) {
+            var ar = [];
+            for (var k in o) if (Object.prototype.hasOwnProperty.call(o, k)) ar[ar.length] = k;
+            return ar;
+        };
+        return ownKeys(o);
+    };
+    return function (mod) {
+        if (mod && mod.__esModule) return mod;
+        var result = {};
+        if (mod != null) for (var k = ownKeys(mod), i = 0; i < k.length; i++) if (k[i] !== "default") __createBinding(result, mod, k[i]);
+        __setModuleDefault(result, mod);
+        return result;
+    };
+})();
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -6463,7 +6415,7 @@ module.exports = require("util");
 /***/ ((module) => {
 
 "use strict";
-module.exports = /*#__PURE__*/JSON.parse('{"1.0.0":{"darwin":{"amd64":{"checksum":"3bce1a83fb518c7bc0afac685601835e5234daa88b3074aafecf768ec80229fe","url":"https://github.com/oras-project/oras/releases/download/v1.0.0/oras_1.0.0_darwin_amd64.tar.gz"},"arm64":{"checksum":"0168a0b8289c202b9dcd57fb4fa3638610245fd5574032e18b1196a20e4100d1","url":"https://github.com/oras-project/oras/releases/download/v1.0.0/oras_1.0.0_darwin_arm64.tar.gz"}},"linux":{"amd64":{"checksum":"8533c9ea1e5a0d5eb1dfc5094c0e8ef106d15462f8a119077548f88937ed2133","url":"https://github.com/oras-project/oras/releases/download/v1.0.0/oras_1.0.0_linux_amd64.tar.gz"},"arm64":{"checksum":"332ba74c043ed590ab0fb61656e6d274243e915cb150d48be4ad64ed591dcc84","url":"https://github.com/oras-project/oras/releases/download/v1.0.0/oras_1.0.0_linux_arm64.tar.gz"},"armv7":{"checksum":"c626893bed0aa26eb37113e11c1bc34552fa213f26af85ef14100a366e6c7c06","url":"https://github.com/oras-project/oras/releases/download/v1.0.0/oras_1.0.0_linux_armv7.tar.gz"},"s390x":{"checksum":"2339f972cbbaa7dc4fed0795c2c37a6124ee524c6e0ed62919c3a0097dd57442","url":"https://github.com/oras-project/oras/releases/download/v1.0.0/oras_1.0.0_linux_s390x.tar.gz"}},"windows":{"amd64":{"checksum":"e47e91fbc72cfe4e5c89321ebc5af953bcafa8a9ecdb0b4fbd53fd136578e03e","url":"https://github.com/oras-project/oras/releases/download/v1.0.0/oras_1.0.0_windows_amd64.zip"}}},"1.0.1":{"darwin":{"amd64":{"checksum":"34f11536dc191f9ad4288649f97ef69b478548f891c932c9732307f064ed3331","url":"https://github.com/oras-project/oras/releases/download/v1.0.1/oras_1.0.1_darwin_amd64.tar.gz"},"arm64":{"checksum":"faa0181799f0e0295d7df188441a1f8869da78a50da4cf7fb03cf35dc746b178","url":"https://github.com/oras-project/oras/releases/download/v1.0.1/oras_1.0.1_darwin_arm64.tar.gz"}},"linux":{"amd64":{"checksum":"6b51b87360d373dd3c19b91d2627d2efd320513380a878b6f06702f72fe8c5ab","url":"https://github.com/oras-project/oras/releases/download/v1.0.1/oras_1.0.1_linux_amd64.tar.gz"},"arm64":{"checksum":"ae1884ae17b7ae7ce694c63d51a52ab0dac1f2c0ca384163455c1e96c5663db0","url":"https://github.com/oras-project/oras/releases/download/v1.0.1/oras_1.0.1_linux_arm64.tar.gz"},"armv7":{"checksum":"f31bc8eab3ed2f368056df3eb5761f40d90dfbd8272bec58d83961f41ebbf3fb","url":"https://github.com/oras-project/oras/releases/download/v1.0.1/oras_1.0.1_linux_armv7.tar.gz"},"s390x":{"checksum":"2a63313a99dd45c448c022a303941e1f5b47b8fdf3493c593b026de384a284b6","url":"https://github.com/oras-project/oras/releases/download/v1.0.1/oras_1.0.1_linux_s390x.tar.gz"}},"windows":{"amd64":{"checksum":"0b9c50eda7aa384d435b31710264d08c77a5e83ee6560ee6e13ca46a6acec1ba","url":"https://github.com/oras-project/oras/releases/download/v1.0.1/oras_1.0.1_windows_amd64.zip"}}},"1.1.0":{"darwin":{"amd64":{"checksum":"f8ac5dea53dd9331cf080f1025f0612e7b07c5af864a4fd609f97d8946508e45","url":"https://github.com/oras-project/oras/releases/download/v1.1.0/oras_1.1.0_darwin_amd64.tar.gz"},"arm64":{"checksum":"d52d3140b0bb9f7d7e31dcbf2a513f971413769c11f7d7a5599e76cc98e45007","url":"https://github.com/oras-project/oras/releases/download/v1.1.0/oras_1.1.0_darwin_arm64.tar.gz"}},"linux":{"amd64":{"checksum":"e09e85323b24ccc8209a1506f142e3d481e6e809018537c6b3db979c891e6ad7","url":"https://github.com/oras-project/oras/releases/download/v1.1.0/oras_1.1.0_linux_amd64.tar.gz"},"arm64":{"checksum":"e450b081f67f6fda2f16b7046075c67c9a53f3fda92fd20ecc59873b10477ab4","url":"https://github.com/oras-project/oras/releases/download/v1.1.0/oras_1.1.0_linux_arm64.tar.gz"},"armv7":{"checksum":"def86e7f787f8deee50bb57d1c155201099f36aa0c6700d3b525e69ddf8ae49b","url":"https://github.com/oras-project/oras/releases/download/v1.1.0/oras_1.1.0_linux_armv7.tar.gz"},"s390x":{"checksum":"067600d61d5d7c23f7bd184cff168ad558d48bed99f6735615bce0e1068b1d77","url":"https://github.com/oras-project/oras/releases/download/v1.1.0/oras_1.1.0_linux_s390x.tar.gz"}},"windows":{"amd64":{"checksum":"2ac83631181d888445e50784a5f760f7f9d97fba3c089e79b68580c496fe68cf","url":"https://github.com/oras-project/oras/releases/download/v1.1.0/oras_1.1.0_windows_amd64.zip"}}},"1.2.0":{"darwin":{"amd64":{"checksum":"58a8494f5bce778e21d89d90c82e05bd128e7bb9d84dd190d154f8afdbf30541","url":"https://github.com/oras-project/oras/releases/download/v1.2.0/oras_1.2.0_darwin_amd64.tar.gz"},"arm64":{"checksum":"fea801b0e02c5342e749ef2860e1faebae03e93ae50e33ed40d227e089cf9435","url":"https://github.com/oras-project/oras/releases/download/v1.2.0/oras_1.2.0_darwin_arm64.tar.gz"}},"freebsd":{"amd64":{"checksum":"73d3a292dce1f0985df084ff50b38ab2deacbcb01902ceebc008d5bea2f2dee9","url":"https://github.com/oras-project/oras/releases/download/v1.2.0/oras_1.2.0_freebsd_amd64.tar.gz"}},"linux":{"amd64":{"checksum":"5b3f1cbb86d869eee68120b9b45b9be983f3738442f87ee5f06b00edd0bab336","url":"https://github.com/oras-project/oras/releases/download/v1.2.0/oras_1.2.0_linux_amd64.tar.gz"},"arm64":{"checksum":"27df680a39fc2fcedc549cb737891623bc696c9a92a03fd341e9356a35836bae","url":"https://github.com/oras-project/oras/releases/download/v1.2.0/oras_1.2.0_linux_arm64.tar.gz"},"armv7":{"checksum":"054685703cb0c66e51f8143e3bbd3976e217d3d595f0593db43b6dd451e43329","url":"https://github.com/oras-project/oras/releases/download/v1.2.0/oras_1.2.0_linux_armv7.tar.gz"},"ppc64le":{"checksum":"af5ee50434c7263b1460978af83e7690570e8999678fae9db6c5dbb38467fed5","url":"https://github.com/oras-project/oras/releases/download/v1.2.0/oras_1.2.0_linux_ppc64le.tar.gz"},"riscv64":{"checksum":"42c7e5f35b72492dd3ee7c68edad0c0da939b39e6ead7f682329015b283e96f8","url":"https://github.com/oras-project/oras/releases/download/v1.2.0/oras_1.2.0_linux_riscv64.tar.gz"},"s390x":{"checksum":"69d2e842e592f4d990b33d58ff3c298c4e4c0921dd54ad9e65e3b6dd9427a750","url":"https://github.com/oras-project/oras/releases/download/v1.2.0/oras_1.2.0_linux_s390x.tar.gz"}},"windows":{"amd64":{"checksum":"f110b42a20bd4728fb0428d36ee6ed10de58cd986bba8e95ecc4f0272cb017ba","url":"https://github.com/oras-project/oras/releases/download/v1.2.0/oras_1.2.0_windows_amd64.zip"}}}}');
+module.exports = /*#__PURE__*/JSON.parse('{"1.0.0":{"darwin":{"amd64":{"checksum":"3bce1a83fb518c7bc0afac685601835e5234daa88b3074aafecf768ec80229fe","url":"https://github.com/oras-project/oras/releases/download/v1.0.0/oras_1.0.0_darwin_amd64.tar.gz"},"arm64":{"checksum":"0168a0b8289c202b9dcd57fb4fa3638610245fd5574032e18b1196a20e4100d1","url":"https://github.com/oras-project/oras/releases/download/v1.0.0/oras_1.0.0_darwin_arm64.tar.gz"}},"linux":{"amd64":{"checksum":"8533c9ea1e5a0d5eb1dfc5094c0e8ef106d15462f8a119077548f88937ed2133","url":"https://github.com/oras-project/oras/releases/download/v1.0.0/oras_1.0.0_linux_amd64.tar.gz"},"arm64":{"checksum":"332ba74c043ed590ab0fb61656e6d274243e915cb150d48be4ad64ed591dcc84","url":"https://github.com/oras-project/oras/releases/download/v1.0.0/oras_1.0.0_linux_arm64.tar.gz"},"armv7":{"checksum":"c626893bed0aa26eb37113e11c1bc34552fa213f26af85ef14100a366e6c7c06","url":"https://github.com/oras-project/oras/releases/download/v1.0.0/oras_1.0.0_linux_armv7.tar.gz"},"s390x":{"checksum":"2339f972cbbaa7dc4fed0795c2c37a6124ee524c6e0ed62919c3a0097dd57442","url":"https://github.com/oras-project/oras/releases/download/v1.0.0/oras_1.0.0_linux_s390x.tar.gz"}},"windows":{"amd64":{"checksum":"e47e91fbc72cfe4e5c89321ebc5af953bcafa8a9ecdb0b4fbd53fd136578e03e","url":"https://github.com/oras-project/oras/releases/download/v1.0.0/oras_1.0.0_windows_amd64.zip"}}},"1.0.1":{"darwin":{"amd64":{"checksum":"34f11536dc191f9ad4288649f97ef69b478548f891c932c9732307f064ed3331","url":"https://github.com/oras-project/oras/releases/download/v1.0.1/oras_1.0.1_darwin_amd64.tar.gz"},"arm64":{"checksum":"faa0181799f0e0295d7df188441a1f8869da78a50da4cf7fb03cf35dc746b178","url":"https://github.com/oras-project/oras/releases/download/v1.0.1/oras_1.0.1_darwin_arm64.tar.gz"}},"linux":{"amd64":{"checksum":"6b51b87360d373dd3c19b91d2627d2efd320513380a878b6f06702f72fe8c5ab","url":"https://github.com/oras-project/oras/releases/download/v1.0.1/oras_1.0.1_linux_amd64.tar.gz"},"arm64":{"checksum":"ae1884ae17b7ae7ce694c63d51a52ab0dac1f2c0ca384163455c1e96c5663db0","url":"https://github.com/oras-project/oras/releases/download/v1.0.1/oras_1.0.1_linux_arm64.tar.gz"},"armv7":{"checksum":"f31bc8eab3ed2f368056df3eb5761f40d90dfbd8272bec58d83961f41ebbf3fb","url":"https://github.com/oras-project/oras/releases/download/v1.0.1/oras_1.0.1_linux_armv7.tar.gz"},"s390x":{"checksum":"2a63313a99dd45c448c022a303941e1f5b47b8fdf3493c593b026de384a284b6","url":"https://github.com/oras-project/oras/releases/download/v1.0.1/oras_1.0.1_linux_s390x.tar.gz"}},"windows":{"amd64":{"checksum":"0b9c50eda7aa384d435b31710264d08c77a5e83ee6560ee6e13ca46a6acec1ba","url":"https://github.com/oras-project/oras/releases/download/v1.0.1/oras_1.0.1_windows_amd64.zip"}}},"1.1.0":{"darwin":{"amd64":{"checksum":"f8ac5dea53dd9331cf080f1025f0612e7b07c5af864a4fd609f97d8946508e45","url":"https://github.com/oras-project/oras/releases/download/v1.1.0/oras_1.1.0_darwin_amd64.tar.gz"},"arm64":{"checksum":"d52d3140b0bb9f7d7e31dcbf2a513f971413769c11f7d7a5599e76cc98e45007","url":"https://github.com/oras-project/oras/releases/download/v1.1.0/oras_1.1.0_darwin_arm64.tar.gz"}},"linux":{"amd64":{"checksum":"e09e85323b24ccc8209a1506f142e3d481e6e809018537c6b3db979c891e6ad7","url":"https://github.com/oras-project/oras/releases/download/v1.1.0/oras_1.1.0_linux_amd64.tar.gz"},"arm64":{"checksum":"e450b081f67f6fda2f16b7046075c67c9a53f3fda92fd20ecc59873b10477ab4","url":"https://github.com/oras-project/oras/releases/download/v1.1.0/oras_1.1.0_linux_arm64.tar.gz"},"armv7":{"checksum":"def86e7f787f8deee50bb57d1c155201099f36aa0c6700d3b525e69ddf8ae49b","url":"https://github.com/oras-project/oras/releases/download/v1.1.0/oras_1.1.0_linux_armv7.tar.gz"},"s390x":{"checksum":"067600d61d5d7c23f7bd184cff168ad558d48bed99f6735615bce0e1068b1d77","url":"https://github.com/oras-project/oras/releases/download/v1.1.0/oras_1.1.0_linux_s390x.tar.gz"}},"windows":{"amd64":{"checksum":"2ac83631181d888445e50784a5f760f7f9d97fba3c089e79b68580c496fe68cf","url":"https://github.com/oras-project/oras/releases/download/v1.1.0/oras_1.1.0_windows_amd64.zip"}}},"1.2.0":{"darwin":{"amd64":{"checksum":"58a8494f5bce778e21d89d90c82e05bd128e7bb9d84dd190d154f8afdbf30541","url":"https://github.com/oras-project/oras/releases/download/v1.2.0/oras_1.2.0_darwin_amd64.tar.gz"},"arm64":{"checksum":"fea801b0e02c5342e749ef2860e1faebae03e93ae50e33ed40d227e089cf9435","url":"https://github.com/oras-project/oras/releases/download/v1.2.0/oras_1.2.0_darwin_arm64.tar.gz"}},"freebsd":{"amd64":{"checksum":"73d3a292dce1f0985df084ff50b38ab2deacbcb01902ceebc008d5bea2f2dee9","url":"https://github.com/oras-project/oras/releases/download/v1.2.0/oras_1.2.0_freebsd_amd64.tar.gz"}},"linux":{"amd64":{"checksum":"5b3f1cbb86d869eee68120b9b45b9be983f3738442f87ee5f06b00edd0bab336","url":"https://github.com/oras-project/oras/releases/download/v1.2.0/oras_1.2.0_linux_amd64.tar.gz"},"arm64":{"checksum":"27df680a39fc2fcedc549cb737891623bc696c9a92a03fd341e9356a35836bae","url":"https://github.com/oras-project/oras/releases/download/v1.2.0/oras_1.2.0_linux_arm64.tar.gz"},"armv7":{"checksum":"054685703cb0c66e51f8143e3bbd3976e217d3d595f0593db43b6dd451e43329","url":"https://github.com/oras-project/oras/releases/download/v1.2.0/oras_1.2.0_linux_armv7.tar.gz"},"ppc64le":{"checksum":"af5ee50434c7263b1460978af83e7690570e8999678fae9db6c5dbb38467fed5","url":"https://github.com/oras-project/oras/releases/download/v1.2.0/oras_1.2.0_linux_ppc64le.tar.gz"},"riscv64":{"checksum":"42c7e5f35b72492dd3ee7c68edad0c0da939b39e6ead7f682329015b283e96f8","url":"https://github.com/oras-project/oras/releases/download/v1.2.0/oras_1.2.0_linux_riscv64.tar.gz"},"s390x":{"checksum":"69d2e842e592f4d990b33d58ff3c298c4e4c0921dd54ad9e65e3b6dd9427a750","url":"https://github.com/oras-project/oras/releases/download/v1.2.0/oras_1.2.0_linux_s390x.tar.gz"}},"windows":{"amd64":{"checksum":"f110b42a20bd4728fb0428d36ee6ed10de58cd986bba8e95ecc4f0272cb017ba","url":"https://github.com/oras-project/oras/releases/download/v1.2.0/oras_1.2.0_windows_amd64.zip"}}},"1.2.1":{"darwin":{"amd64":{"checksum":"54095db9a4cb0f37bf7ac5afbed0ff167215195ad07b6d9318b69c5a8944b19d","url":"https://github.com/oras-project/oras/releases/download/v1.2.1/oras_1.2.1_darwin_amd64.tar.gz"},"arm64":{"checksum":"e3489c1946cb98c21992e09f2ec37974ad3856bb88b798682975fce7960f08fe","url":"https://github.com/oras-project/oras/releases/download/v1.2.1/oras_1.2.1_darwin_arm64.tar.gz"}},"freebsd":{"amd64":{"checksum":"778f92a8d678b45a3fc70234573cf6b48f50744111f2c4c615fd9962b41481e7","url":"https://github.com/oras-project/oras/releases/download/v1.2.1/oras_1.2.1_freebsd_amd64.tar.gz"}},"linux":{"amd64":{"checksum":"4180b940409ab801ada54cdb793dd7372be2a5cb25b6522490409d5d4b0e3dde","url":"https://github.com/oras-project/oras/releases/download/v1.2.1/oras_1.2.1_linux_amd64.tar.gz"},"arm64":{"checksum":"65f9197e9eacda769b1f2f447e2c4004a8f3f772855c2c987d5111e8302cbbed","url":"https://github.com/oras-project/oras/releases/download/v1.2.1/oras_1.2.1_linux_arm64.tar.gz"},"armv7":{"checksum":"fe833e216c72f98d1426da3b0dd136328a578c92a6cd10987374bc5680c0a0a4","url":"https://github.com/oras-project/oras/releases/download/v1.2.1/oras_1.2.1_linux_armv7.tar.gz"},"ppc64le":{"checksum":"cbfc9b4c847becb0dc5b6f30b3bf55884a1090f5deb6894ba5183f6e916e17e2","url":"https://github.com/oras-project/oras/releases/download/v1.2.1/oras_1.2.1_linux_ppc64le.tar.gz"},"riscv64":{"checksum":"960067eaf16034eb8ac2f843775e53bae37b7585d55132e283fb3402a3cea68a","url":"https://github.com/oras-project/oras/releases/download/v1.2.1/oras_1.2.1_linux_riscv64.tar.gz"},"s390x":{"checksum":"dc3b6a4c3290c60de8c57ff63fef7a5689cd8e2df39026f2937cc25fd95dfbc4","url":"https://github.com/oras-project/oras/releases/download/v1.2.1/oras_1.2.1_linux_s390x.tar.gz"}},"windows":{"amd64":{"checksum":"e072dac29eb4a4b62520b52193e028420c159e5ec192f28bfebfb11f81c7d6d8","url":"https://github.com/oras-project/oras/releases/download/v1.2.1/oras_1.2.1_windows_amd64.zip"}}},"1.2.2":{"darwin":{"amd64":{"checksum":"e953c3c5580a317ba30871ee77f39a37e5bcb030edf01c5e9a83ebddcec7cf8a","url":"https://github.com/oras-project/oras/releases/download/v1.2.2/oras_1.2.2_darwin_amd64.tar.gz"},"arm64":{"checksum":"fcac22adaf1cfe7854738859d0f4705d1cd75a23edaef5ee2e9aba66cfff2315","url":"https://github.com/oras-project/oras/releases/download/v1.2.2/oras_1.2.2_darwin_arm64.tar.gz"}},"freebsd":{"amd64":{"checksum":"a0570a5119cb054f6d3716dd9771a2216e15bc38953293be4703059cada113e3","url":"https://github.com/oras-project/oras/releases/download/v1.2.2/oras_1.2.2_freebsd_amd64.tar.gz"}},"linux":{"amd64":{"checksum":"bff970346470e5ef888e9f2c0bf7f8ee47283f5a45207d6e7a037da1fb0eae0d","url":"https://github.com/oras-project/oras/releases/download/v1.2.2/oras_1.2.2_linux_amd64.tar.gz"},"arm64":{"checksum":"edd7195cbb8ba56c29ede413eefa10c8026201d63326017cd315841b4063aa56","url":"https://github.com/oras-project/oras/releases/download/v1.2.2/oras_1.2.2_linux_arm64.tar.gz"},"armv7":{"checksum":"df2e87741cdb703f77930a10202d4425775e69c6b925ce0cab3a2a992fa6a446","url":"https://github.com/oras-project/oras/releases/download/v1.2.2/oras_1.2.2_linux_armv7.tar.gz"},"ppc64le":{"checksum":"d7554f1d96061ba8c4ea8c930b01f7f47a336b20b52ac442f5dbcab88c3793cf","url":"https://github.com/oras-project/oras/releases/download/v1.2.2/oras_1.2.2_linux_ppc64le.tar.gz"},"riscv64":{"checksum":"dbebe747bb5f9c8382d7cdd2fb81edf48aa5d03401364252172f32caddd449eb","url":"https://github.com/oras-project/oras/releases/download/v1.2.2/oras_1.2.2_linux_riscv64.tar.gz"},"s390x":{"checksum":"9d72dcd93264729c9dbee91b6841fdfe1fa85ec6c9303108a889bdd6816383ee","url":"https://github.com/oras-project/oras/releases/download/v1.2.2/oras_1.2.2_linux_s390x.tar.gz"}},"windows":{"amd64":{"checksum":"25110d69d220bf55469a14c243f759305737dac6672fb47b4af4e43b000f55f5","url":"https://github.com/oras-project/oras/releases/download/v1.2.2/oras_1.2.2_windows_amd64.zip"}}},"1.2.3":{"darwin":{"amd64":{"checksum":"29d8b684dadd9b08614fe9023a5ac8ff0ef1bef1c9795ad8076e3215eb207724","url":"https://github.com/oras-project/oras/releases/download/v1.2.3/oras_1.2.3_darwin_amd64.tar.gz"},"arm64":{"checksum":"ca4188a0c690536d34baf2a4c3507b3fcc11a06979aeec6da3560a0c4d944a6a","url":"https://github.com/oras-project/oras/releases/download/v1.2.3/oras_1.2.3_darwin_arm64.tar.gz"}},"freebsd":{"amd64":{"checksum":"0cd77c9340578e4ef86533d5603498fe006f6b962d619612d49769aa01fe90e3","url":"https://github.com/oras-project/oras/releases/download/v1.2.3/oras_1.2.3_freebsd_amd64.tar.gz"}},"linux":{"amd64":{"checksum":"b4efc97a91f471f323f193ea4b4d63d8ff443ca3aab514151a30751330852827","url":"https://github.com/oras-project/oras/releases/download/v1.2.3/oras_1.2.3_linux_amd64.tar.gz"},"arm64":{"checksum":"90e24e234dc6dffe73365533db66fd14449d2c9ae77381081596bf92f40f6b82","url":"https://github.com/oras-project/oras/releases/download/v1.2.3/oras_1.2.3_linux_arm64.tar.gz"},"armv7":{"checksum":"f5d32565d714fdddc4f06fd8c00e9cc5719398ccb918a5d64a54b5531da4f893","url":"https://github.com/oras-project/oras/releases/download/v1.2.3/oras_1.2.3_linux_armv7.tar.gz"},"ppc64le":{"checksum":"6362e6df98961906c55fbbaf789610c575a8cd4c72a0e18a41561b36fd4352ef","url":"https://github.com/oras-project/oras/releases/download/v1.2.3/oras_1.2.3_linux_ppc64le.tar.gz"},"riscv64":{"checksum":"a1f2a861b5e5e295925dcdeb226a3e097e92b48c87a00c5cbbdffc6288597b37","url":"https://github.com/oras-project/oras/releases/download/v1.2.3/oras_1.2.3_linux_riscv64.tar.gz"},"s390x":{"checksum":"7993b9247c49e7aa3f107568c33c37d6bcae87018651a6def8278ea7c2c7a3a8","url":"https://github.com/oras-project/oras/releases/download/v1.2.3/oras_1.2.3_linux_s390x.tar.gz"}},"windows":{"amd64":{"checksum":"8fe890f5c6c89b06fb138839e533a112e0fc026a25b2c8c1b042b32455a56947","url":"https://github.com/oras-project/oras/releases/download/v1.2.3/oras_1.2.3_windows_amd64.zip"}}}}');
 
 /***/ })
 
