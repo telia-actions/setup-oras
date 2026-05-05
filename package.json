@@ -17,11 +17,11 @@
   },
   "homepage": "https://github.com/oras-project/setup-oras#readme",
   "dependencies": {
-    "@actions/core": "^3.0.0",
+    "@actions/core": "^3.0.1",
     "@actions/tool-cache": "^4.0.0",
-    "@types/node": "^25.5.2",
+    "@types/node": "^25.6.0",
     "esbuild": "^0.28.0",
-    "typescript": "^6.0.2"
+    "typescript": "^6.0.3"
   },
   "overrides": {
     "undici": ">=6.24.1"
