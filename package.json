@@ -19,11 +19,11 @@
   "dependencies": {
     "@actions/core": "^3.0.1",
     "@actions/tool-cache": "^4.0.0",
-    "@types/node": "^26.1.2",
-    "esbuild": "^0.28.1",
+    "@types/node": "^26.4.1",
+    "esbuild": "^0.28.2",
     "typescript": "^7.0.2"
   },
   "overrides": {
-    "undici": ">=8.5.0"
+    "undici": ">=8.9.0"
   }
 }
